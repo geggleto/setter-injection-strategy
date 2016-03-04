@@ -1,0 +1,25 @@
+{
+  "name": "geggleto/setter-strategy",
+  "description": "Alternative dispatch strategy for slim 3",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Glenn Eggleton",
+      "email": "geggleto@gmail.com"
+    }
+  ],
+  "require": {
+    "slim/slim": "3.2.1",
+    "phpunit/phpunit": "5.2.10"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "Geggleto\\" : "src"
+    }
+  },
+  "autoload-dev" : {
+    "psr-4" : {
+      "Geggleto\\Tests\\" : "tests"
+    }
+  }
+}
