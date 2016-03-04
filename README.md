@@ -28,6 +28,19 @@ class abcController implements SetterInjectionReceiver {
   //...
 }
 ```
+
+Or this if you have arguments
+```php
+class abcController implements SetterInjectionReceiver {
+  //.. Implement and store the Objects somewhere up here.
+  //...
+  public function myAction ($arg1, $arg2, $arg3) {
+    //..  This is now much more Slim 2 style
+  }
+  //...
+}
+```
+
 ## Install
 This package is available via Composer. `composer install geggleto/setter-strategy`
 

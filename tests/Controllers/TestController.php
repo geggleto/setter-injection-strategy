@@ -43,15 +43,7 @@ class TestController implements SetterInjectionReceiver
     {
         $this->response = $response;
     }
-
-    /**
-     * @param array $args
-     */
-    public function setArgs(array $args)
-    {
-        $this->args = $args;
-    }
-
+    
     /**
      * @return ServerRequestInterface
      */
@@ -68,13 +60,6 @@ class TestController implements SetterInjectionReceiver
         return $this->response;
     }
 
-    /**
-     * @return array
-     */
-    public function getArgs()
-    {
-        return $this->args;
-    }
 
     /**
      * @return ResponseInterface
@@ -86,4 +71,9 @@ class TestController implements SetterInjectionReceiver
     public function testOtherMethod($req, $res, $args) {
         return $res->write("Hi");
     }
+
+    public function testMethodArgs($id) {
+        return $this->response->write($id);
+    }
+
 }

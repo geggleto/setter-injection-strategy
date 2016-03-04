@@ -16,5 +16,4 @@ interface SetterInjectionReceiver
 {
     public function setRequest(ServerRequestInterface $request);
     public function setResponse(ResponseInterface $response);
-    public function setArgs(array $args);
 }

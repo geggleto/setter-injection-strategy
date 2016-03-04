@@ -37,9 +37,8 @@ class SetterInjectionStrategy implements InvocationStrategyInterface
         if ($target instanceof SetterInjectionReceiver) {
             $target->setRequest($request);
             $target->setResponse($response);
-            $target->setArgs($routeArguments);
 
-            return call_user_func($callable);
+            return call_user_func_array($callable, $routeArguments);
 
         } else { //If it all fails, fallback
             return call_user_func($callable, $request, $response, $routeArguments);

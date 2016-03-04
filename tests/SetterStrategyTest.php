@@ -28,10 +28,10 @@ class SetterStrategyTest extends \PHPUnit_Framework_TestCase
     /**
      * @return Request
      */
-    public function requestFactory()
+    public function requestFactory($uri = '')
     {
         $env = Environment::mock();
-        $uri = Uri::createFromString('https://example.com/test');
+        $uri = Uri::createFromString('https://example.com/test'.$uri);
         $headers = Headers::createFromEnvironment($env);
         $cookies = [
             'user' => 'john',
@@ -57,10 +57,6 @@ class SetterStrategyTest extends \PHPUnit_Framework_TestCase
             return new SetterInjectionStrategy();
         };
         $container['request'] = $this->requestFactory();
-
-        $container[TestController::class] = function ($c) {
-          return new TestController();
-        };
 
         $this->app->get('/test', TestController::class.":testMethod");
 
@@ -89,8 +85,24 @@ class SetterStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('\Psr\Http\Message\ResponseInterface', $resOut);
         $this->assertEquals("Hi",  (string)$resOut->getBody());
+    }
 
+    public function testInjectionArgs() {
+        $container = $this->app->getContainer();
 
+        $container['foundHandler'] = function ($c) {
+            return new SetterInjectionStrategy();
+        };
+        $container['request'] = $this->requestFactory('/1');
+
+        $this->app->get('/test/{id}', TestController::class.":testMethodArgs");
+
+        $resOut = $this->app->run(true);
+
+        $resOut->getBody()->rewind();
+
+        $this->assertInstanceOf('\Psr\Http\Message\ResponseInterface', $resOut);
+        $this->assertEquals("1",  (string)$resOut->getBody());
     }
 
 }
