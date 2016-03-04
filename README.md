@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/geggleto/setter-injection-strategy.svg?branch=master)](https://travis-ci.org/geggleto/setter-injection-strategy)
+
 # setter-injection-strategy
 
 This package is intended to replace the default Invocation handler in Slim. 
